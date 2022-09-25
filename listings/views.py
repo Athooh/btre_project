@@ -1,10 +1,16 @@
 from django.shortcuts import render
-
+from .models import listing as list
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'listings/listings.html', {'navbar': 'listings'})
+    listings = list.objects.all()
+
+    context = {
+        'listings': listings
+    }
+
+    return render(request, 'listings/listings.html', context)
 
 
 def listing(request):
