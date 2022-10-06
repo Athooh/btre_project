@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from listings.models import listing
 from listings.models import Realtor
+from listings.choices import price_choices, bedroom_choices, state_choices
 # Create your views here.
 
 
@@ -10,6 +11,9 @@ def index(request):
 
     context = {
         'listings': listings,
+        'state_choices': state_choices,
+        'bedroom_choices': bedroom_choices,
+        'price_choices': price_choices,
         'navbar': 'index'
     }
     return render(request, 'pages/index.html', context)
