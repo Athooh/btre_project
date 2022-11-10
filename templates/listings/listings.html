@@ -36,7 +36,7 @@
                     <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" />
                     <div class="card-img-overlay">
                         <h2>
-                            <span class="badge badge-secondary text-white">${{ listing.price | intcomma}}</span
+                            <span class="badge badge-secondary text-white">${{ listing.price | intcomma }}</span
               >
             </h2>
           </div>
@@ -97,38 +97,26 @@
     <div class="row">
       <div class="col-md-12">
         {% if listings.has_other_pages %}
-        <ul class="pagination">
+        <div class="btn-group" role="group" aria-label="pagination">
           {% if listings.has_previous %}
-          <li class="page-item">
-            <a href="?page={{listings.previous_page_number}}" class="page-link"
+          
+            <a href="?page={{listings.previous_page_number}}" class="btn btn-outline-primary"
               >&laquo;</a
             >
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link">&laquo;</a>
-          </li>
-          {% endif %} {% for i in listings.paginator.page_range %} {% if
-          listings.number == i %}
-          <li class="page-item active">
-            <a class="page-link">{{i}}</a>
-          </li>
-          {% if listings.number != i %}
-          <li class="page-item">
-            <a href="?page={{i}}" class="page-link">{{i}}</a>
-          </li>
-          {% endif %} {% endfor %} {% if listings.has_next %}
-          <li class="page-item">
-            <a href="?page={{listings.next_page_number}}" class="page-link"
-              >&raquo;</a
-            >
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link">&raquo;</a>
-          </li>
           {% endif %}
-        </ul>
+          {% for i in listings.paginator.page_range %} 
+          {% if listings.number == i %}
+          <button class="btn btn-outline-primary active">
+            <span>{{i}}<span class="sr-only">(current)</span></span>
+                            </button>
+                            {% else %}
+                            <a href="?page={{i}}" class="btn btn-outline-primary">{{i}}</a>
+                            </li>
+                            {% endif %} {% endfor %} {% if listings.has_next %}
+                            <a href="?page={{listings.next_page_number}}" class="btn btn-outline-primary">&raquo;</a
+            >
+          {% endif %}
+      </div>
         {% endif %}
       </div>
     </div>
